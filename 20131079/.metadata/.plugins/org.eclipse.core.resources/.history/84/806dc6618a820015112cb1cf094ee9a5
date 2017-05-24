@@ -1,0 +1,77 @@
+package book;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class LoginServlet
+ */
+@WebServlet("/book/login")
+public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+		
+		try {
+			ServletContext sc = this.getServletContext();
+			Class.forName(sc.getInitParameter("driver"));
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/book?useUnicode=true&characterEncoding=UTF-8", "root", "1234"); 
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(
+					"SELECT custid,id,password" + 
+					" FROM login" +
+					" ORDER BY custid ASC");
+			
+			response.setContentType("text/html; charset=UTF-8");
+			
+			ArrayList<Member> members = new ArrayList<Member>();
+			
+			// 데이터베이스에서 책 정보를 가져와 Member에 담는다.
+			// 그리고 Book객체를 ArrayList에 추가한다.
+			while(rs.next()) 
+			{
+				members.add(new Member()
+							.setCustid(rs.getInt("custid"))
+							.setId(rs.getString("id"))
+							.setPw(rs.getString("password")));
+			}
+			
+			// request에 책 목록 데이터 보관한다.
+			request.setAttribute("members", members);
+			
+			// JSP로 출력을 위임한다.
+			//RequestDispatcher rd = request.getRequestDispatcher("/book/BookListServlet.java");
+			//rd.include(request, response);
+			//response.sendRedirect("/book/list");
+			request.getRequestDispatcher("/book/list").forward(request, response);
+			
+		} catch (Exception e) {
+			throw new ServletException(e);
+			
+		} finally {
+			try {if (rs != null) rs.close();} catch(Exception e) {}
+			try {if (stmt != null) stmt.close();} catch(Exception e) {}
+			try {if (conn != null) conn.close();} catch(Exception e) {}
+		}
+	}
+
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;web05_2&apos;&#x0D;&#x0A;- Original project: &apos;web05_2&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     spms.servlets.MemberAddServlet.java&#x0D;&#x0A;     spms.servlets.MemberDeleteServlet.java&#x0D;&#x0A;     spms.servlets.MemberUpdateServlet.java" description="Delete elements" element1="/src&lt;spms.servlets{MemberAddServlet.java" element2="/src&lt;spms.servlets{MemberDeleteServlet.java" element3="/src&lt;spms.servlets{MemberUpdateServlet.java" elements="3" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1444785948574" subPackages="false" version="1.0"/>
+</session>

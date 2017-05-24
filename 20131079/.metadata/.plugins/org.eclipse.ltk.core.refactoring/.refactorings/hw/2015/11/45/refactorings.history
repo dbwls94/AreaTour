@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;book.BookDeleteServlet&apos; to &apos;OrderDeleteServlet&apos;&#x0D;&#x0A;- Original project: &apos;hw&apos;&#x0D;&#x0A;- Original element: &apos;book.BookDeleteServlet&apos;&#x0D;&#x0A;- Renamed element: &apos;book.OrderDeleteServlet&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;BookDeleteServlet&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;book{BookDeleteServlet.java[BookDeleteServlet" matchStrategy="1" name="OrderDeleteServlet" qualified="false" references="true" similarDeclarations="false" stamp="1446472779765" textual="false" version="1.0"/>
+</session>

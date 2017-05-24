@@ -1,0 +1,90 @@
+package api;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+public class NaverAPI5 {
+    // NaverAPI의 URL주소
+    private final static String url = "http://openapi.naver.com/search?key=";
+    // 네이버 개발자 센터에서 발급받은 자신의 key
+    private final static String key = "e8b059b58d2ad75549f8b0d62034b9cb";
+    // 실시간 급상승 검색어의 Parameter
+    private final static String url2 = "&query=mission&display=10&start=1&target=movie";
+
+    public static void main(String[] args) {
+        NaverAPI5.getKeyword();
+    }
+    
+    public static boolean isTextNode(Node n)
+	  {
+		return n.getNodeName().equals("#text");
+	  }
+    
+    public static void getKeyword() {
+        
+        try {
+            String strURL = url + key + url2;
+
+            // 위의 url로 request를 던지면 xml형식의 결과를 반환한다
+            DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = builderFactory.newDocumentBuilder();
+            Document doc = builder.parse(strURL);
+            Element root = doc.getDocumentElement();
+
+            // 취득한 xml형식의 결과에서 실시간 검색어만 뽑아온다
+            //NodeList itemList = root.getElementsByTagName("title");          
+            //NodeList itemList2 = root.getElementsByTagName("director"); 
+            //for (int i = 0; i < itemList.getLength(); i++) {
+                //Element itemElement = (Element) itemList.item(i); 
+                //Element itemElement2 = (Element) itemList2.item(i); 
+                //String keyword = itemElement.getFirstChild().getNodeValue();
+                //String keyword2 = itemElement2.getFirstChild().getNodeValue();
+                //System.out.println(keyword);
+            //}
+            
+            NodeList titleList = root.getChildNodes();     // 2 "person" nodes
+            
+  		    for (int i=0; i<titleList.getLength(); i++)
+  		    {
+	  			Node currentTitle = titleList.item(i);
+	  			if (isTextNode(currentTitle)) // skip whitespace node
+	  			  continue;
+	  			NodeList nameAndAge = currentTitle.getChildNodes(); // "name" and "age" nodes
+	  			for (int j=0; j<nameAndAge.getLength(); j++ )
+				{
+				  Node currentItem = nameAndAge.item(j);
+				  if ( isTextNode(currentItem) ) 
+					continue;
+				  currentItem.getFirstChild().getNodeValue()
+				}
+  		    }
+            
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ParserConfigurationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SAXException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+}        

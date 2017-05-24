@@ -1,0 +1,10 @@
+127.0.0.1 - - [11/Dec/2015:12:24:15 +0900] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [11/Dec/2015:12:24:17 +0900] "GET /finalproject/tour/MainPage.jsp HTTP/1.1" 200 3992
+0:0:0:0:0:0:0:1 - - [11/Dec/2015:12:24:17 +0900] "GET /finalproject/tour/css/style.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [11/Dec/2015:12:24:19 +0900] "GET /finalproject/tour/AreaSearch.jsp HTTP/1.1" 200 3277
+0:0:0:0:0:0:0:1 - - [11/Dec/2015:12:24:30 +0900] "GET /finalproject/tour/tourcode?area=%EA%B0%95%EC%9B%90%EB%8F%84 HTTP/1.1" 200 17936
+0:0:0:0:0:0:0:1 - - [11/Dec/2015:12:24:42 +0900] "GET /finalproject/tour/MainPage.jsp HTTP/1.1" 200 3992
+0:0:0:0:0:0:0:1 - - [11/Dec/2015:12:24:44 +0900] "GET /finalproject/tour/AreaList.jsp HTTP/1.1" 200 7815
+0:0:0:0:0:0:0:1 - - [11/Dec/2015:12:24:50 +0900] "GET /finalproject/tour/tourlist?search=%EB%8C%80%EC%A0%84 HTTP/1.1" 200 62542
+0:0:0:0:0:0:0:1 - - [11/Dec/2015:12:24:50 +0900] "GET /finalproject/tour/null HTTP/1.1" 404 995
+0:0:0:0:0:0:0:1 - - [11/Dec/2015:12:27:01 +0900] "GET /finalproject/tour/MainPage.jsp HTTP/1.1" 200 3992
